@@ -1,5 +1,6 @@
 import json
 import base64
+import pickle
 import ujson
 import msgpack
 
@@ -52,6 +53,9 @@ def json_test1():
 def msgpack_test1():
     return serializer1(msgpack)
 
+def pickle_test1():
+    return serializer1(pickle)
+
 
 def ujson_test2():
     return serializer2(ujson)
@@ -65,35 +69,20 @@ def msgpack_test2():
     return serializer2(msgpack)
 
 
+def pickle_test2():
+    return serializer2(pickle)
+
+
 if __name__ == '__main__':
     import timeit
-    print(
-        "json test1: %s ms" %
-        timeit.timeit("json_test1()", setup="from __main__ import json_test1",
-                      number=1000)
-    )
-    print(
-        "ujson test1: %s ms" %
-        timeit.timeit("ujson_test1()", setup="from __main__ import ujson_test1",
-                      number=1000)
-    )
-    print(
-        "msgpack test1: %s ms" %
-        timeit.timeit("msgpack_test1()", setup="from __main__ import msgpack_test1",
-                      number=1000)
-    )
-    print(
-        "json test2: %s ms" %
-        timeit.timeit("json_test2()", setup="from __main__ import json_test2",
-                      number=1000)
-    )
-    print(
-        "ujson test2: %s ms" %
-        timeit.timeit("ujson_test2()", setup="from __main__ import ujson_test2",
-                      number=1000)
-    )
-    print(
-        "msgpack test2: %s ms" %
-        timeit.timeit("msgpack_test2()", setup="from __main__ import msgpack_test2",
-                      number=1000)
-    )
+
+    for test in ['test1', 'test2']:
+        for serializer in ['json', 'ujson', 'msgpack', 'pickle']:
+            test_method = "%s_%s" % (test, serializer,)
+            print("%(serializer)s %(test)s: %(result)s ms" % {
+                  'serializer': serializer,
+                  'test': test,
+                  'result': timeit.timeit("%s()" % test_method,
+                                          setup="from __main__ import %s" % test_method,
+                                          number=1000)
+            })
