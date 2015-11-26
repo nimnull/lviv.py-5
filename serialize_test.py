@@ -78,7 +78,7 @@ if __name__ == '__main__':
 
     for test in ['test1', 'test2']:
         for serializer in ['json', 'ujson', 'msgpack', 'pickle']:
-            test_method = "%s_%s" % (test, serializer,)
+            test_method = "%s_%s" % (serializer, test,)
             print("%(serializer)s %(test)s: %(result)s ms" % {
                   'serializer': serializer,
                   'test': test,
