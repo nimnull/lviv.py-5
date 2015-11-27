@@ -17,17 +17,20 @@ PID   Command                  USS      PSS      RSS
 
 ## Serialize test.
 ### converted to array, then serialized
+```
 json test1: 16.321614345069975 ms
 ujson test1: 2.8908381939399987 ms
 msgpack test1: 1.4039006591774523 ms
 pickle test1: 1.4961050520651042 ms
+```
 
 ### base64 encoded & serialized
+```
 json test2: 1.5896962771657854 ms
 ujson test2: 1.910914566833526 ms
 msgpack test2: 1.2236832270864397 ms
 pickle test2: 1.2019711039029062 ms
-
+```
 
 ## multiprocessing
 ```
