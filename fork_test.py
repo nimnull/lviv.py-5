@@ -30,7 +30,7 @@ def parent():
             child_process(matrix)
         else:
             parent_process(matrix)
-        reply = input("\nq for quit / c for new fork: \n")
+        reply = input("\nq for quit / c for new fork:")
         if reply == 'c':
             continue
         else:
