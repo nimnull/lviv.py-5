@@ -60,9 +60,4 @@ PID   Command                  USS
 ## Links:
     * An introduction to parallel programming (http://sebastianraschka.com/Articles/2014_multiprocessing_intro.html)
     * Runtime Memory Measurement (http://elinux.org/Runtime_Memory_Measurement)
-
-
-
-
-
-https://github.com/vmlaker/benchmark-sharedmem
+    * https://github.com/vmlaker/benchmark-sharedmem

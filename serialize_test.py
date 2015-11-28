@@ -8,10 +8,7 @@ import numpy
 import numpy.matlib
 
 
-SHAPE = (100, 100,)
-
-
-def serializer1(serialiser):
+def serializer1(serialiser, SHAPE=(100, 100,)):
     matrix = numpy.matlib.randn(SHAPE)
     encoded = serialiser.dumps(matrix.tolist())
     decoded = serialiser.loads(encoded)
@@ -19,7 +16,7 @@ def serializer1(serialiser):
     return numpy.array(decoded).reshape(SHAPE)
 
 
-def serializer2(serialiser):
+def serializer2(serialiser, SHAPE=(100, 100,)):
     matrix = numpy.matlib.randn(SHAPE)
 
     encoded = serialiser.dumps([
