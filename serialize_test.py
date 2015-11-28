@@ -11,28 +11,23 @@ import numpy.matlib
 SHAPE = (100, 100,)
 
 
-def serializer1(json_serializer):
-
+def serializer1(serialiser):
     matrix = numpy.matlib.randn(SHAPE)
+    encoded = serialiser.dumps(matrix.tolist())
+    decoded = serialiser.loads(encoded)
 
-    encoded = json_serializer.dumps(matrix.tolist())
-    # print(encoded)
-
-    decoded = json_serializer.loads(encoded)
-    # data_type = numpy.dtype(decoded[0])
-    # data_array = numpy.frombuffer(base64.decodestring(decoded[1].encode()),
-    #                               data_type)
     return numpy.array(decoded).reshape(SHAPE)
 
-def serializer2(serializer):
+
+def serializer2(serialiser):
     matrix = numpy.matlib.randn(SHAPE)
 
-    encoded = serializer.dumps([
+    encoded = serialiser.dumps([
         str(matrix.dtype),
         base64.b64encode(matrix).decode(),
         matrix.shape
     ])
-    decoded = serializer.loads(encoded)
+    decoded = serialiser.loads(encoded)
     data_type = numpy.dtype(decoded[0])
     if isinstance(decoded[1], bytes):
         data_frame = decoded[1]
@@ -52,6 +47,7 @@ def json_test1():
 
 def msgpack_test1():
     return serializer1(msgpack)
+
 
 def pickle_test1():
     return serializer1(pickle)
